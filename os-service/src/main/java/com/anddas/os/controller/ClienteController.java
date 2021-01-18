@@ -38,7 +38,6 @@ public class ClienteController {
 
 	@GetMapping
 	public List<ClienteRepresentation> clientes() {
-		//return clienteRepository.findAll();
 		return toCollectionRepresentation(clienteRepository.findAll());
 
 	}
@@ -47,16 +46,11 @@ public class ClienteController {
 
 	public Cliente salvar(@Valid @RequestBody Cliente cliente) {
 		 return cadastroCliente.salvar(cliente);
-		
-
 	}
 
 	@GetMapping("{idCliente}")
 	public Cliente buscarClienteId(@Valid @PathVariable(name = "idCliente") Integer idCliente) {
-
 		return clienteRepository.findById(idCliente).orElse(null);
-		
-
 	}
 
 	@DeleteMapping("/{idCliente}")
