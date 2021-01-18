@@ -1,0 +1,7 @@
+com\anddas\os\controller\ClienteController.class
+com\anddas\os\exceptions\ApiExceptionHandler.class
+com\anddas\os\model\Cliente.class
+com\anddas\os\exceptions\Problema.class
+com\anddas\os\OsServiceApplication.class
+com\anddas\os\repository\ClienteRepository.class
+com\anddas\os\service\CadastroClienteService.class
