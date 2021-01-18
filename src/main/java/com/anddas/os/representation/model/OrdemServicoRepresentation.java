@@ -3,8 +3,8 @@ package com.anddas.os.representation.model;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import com.anddas.os.model.StatusOrdemServico;
 
+import com.anddas.os.model.StatusOrdemServico;
 public class OrdemServicoRepresentation {
 	
 	private Integer id;
@@ -60,9 +60,6 @@ public class OrdemServicoRepresentation {
 		this.dataFinalizada = dataFinalizada;
 	}
 
-	
-	
-	
-	
+
 
 }

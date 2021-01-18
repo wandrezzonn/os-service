@@ -16,10 +16,11 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.anddas.os.exception.ApiExceptionHandler;
+
 import com.anddas.os.model.Cliente;
 import com.anddas.os.repository.ClienteRepository;
 import com.anddas.os.representation.model.ClienteRepresentation;
+import com.anddas.os.service.CadastroClienteService;
 
 @RestController
 @RequestMapping("/clientes")
@@ -30,9 +31,10 @@ public class ClienteController {
 
 	@Autowired
 	private ModelMapper mapper;
-
+	
 	@Autowired
-	private ApiExceptionHandler api;
+	CadastroClienteService cadastroCliente;
+
 
 	@GetMapping
 	public List<ClienteRepresentation> clientes() {
@@ -43,9 +45,9 @@ public class ClienteController {
 
 	@PostMapping
 
-	public ResponseEntity<Object> salvar(@Valid @RequestBody Cliente cliente) {
-		// return cadastroCliente.salvar(cliente);
-		return api.validar(cliente);
+	public Cliente salvar(@Valid @RequestBody Cliente cliente) {
+		 return cadastroCliente.salvar(cliente);
+		
 
 	}
 

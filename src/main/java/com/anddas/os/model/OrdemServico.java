@@ -14,7 +14,6 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.annotation.JsonProperty.Access;
 
@@ -41,6 +40,7 @@ public class OrdemServico {
 	@Column(name = "data_abertura")
 	@JsonProperty(access = Access.READ_ONLY)
 	private LocalDateTime dataAbertura;
+	
 	
 	@Column(name = "data_finalizacao")
 	@JsonProperty(access = Access.READ_ONLY)

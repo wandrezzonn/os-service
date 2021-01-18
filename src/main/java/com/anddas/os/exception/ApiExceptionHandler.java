@@ -1,31 +1,26 @@
 package com.anddas.os.exception;
+
 import java.time.LocalDateTime;
-import org.springframework.beans.factory.annotation.Autowired;
+
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
-import com.anddas.os.model.Cliente;
-import com.anddas.os.service.CadastroClienteService;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
 @ControllerAdvice
-public class ApiExceptionHandler{
-	
-	@Autowired
-	private CadastroClienteService cadastroCliente;
-	
-	public ResponseEntity<Object> validar(Cliente cliente){
-		 var problema = new Problema();
-		    problema.setStatus(400);
-	        problema.setTitulo("Preencher todos os campos");
-	        problema.setDataHora(LocalDateTime.now());
-		if(cliente.getNome() == null || cliente.getNome().isEmpty() || cliente.getEmail() == null || cliente.getEmail().isEmpty()) {
-			return ResponseEntity.badRequest().body(problema);
-		}
+public class ApiExceptionHandler {
+
+	@ExceptionHandler(value = { DataIntegrityViolationException.class, ConstraintViolationException.class })
+	public ResponseEntity<Object> handlerDataIntegrityViolationException() {
+		Problema problema = new ProblemaBuider().comTitulo("Uma ou mais campos estão vazios, favor verificar")
+				.comStatus(HttpStatus.BAD_REQUEST.value())
+				.comdataHora(LocalDateTime.now())
+				.buid();
 		
-		return ResponseEntity.ok(cadastroCliente.salvar(cliente));
-		
-		
-		
-		
+		return new ResponseEntity<>(problema, HttpStatus.BAD_REQUEST);
+
 	}
-	
 
 }

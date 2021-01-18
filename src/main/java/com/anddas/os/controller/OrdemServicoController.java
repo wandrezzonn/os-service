@@ -47,6 +47,7 @@ public class OrdemServicoController {
 	public ResponseEntity<OrdemServicoRepresentation> buscarPorId(@PathVariable("idOrdem") Integer id) {
 		OrdemServico ordemS = service.buscarPorId(id);
 		if (ordemS != null) {
+
 			return ResponseEntity.ok(toModel(ordemS));
 		}
 		return ResponseEntity.notFound().build();
