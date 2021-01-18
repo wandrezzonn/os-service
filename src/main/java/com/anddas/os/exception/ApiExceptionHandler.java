@@ -14,7 +14,7 @@ public class ApiExceptionHandler {
 
 	@ExceptionHandler(value = { DataIntegrityViolationException.class, ConstraintViolationException.class })
 	public ResponseEntity<Object> handlerDataIntegrityViolationException() {
-		Problema problema = new ProblemaBuider().comTitulo("Uma ou mais campos estão vazios, favor verificar")
+		Problema problema = new ProblemaBuilder().comTitulo("Uma ou mais campos estão vazios, favor verificar")
 				.comStatus(HttpStatus.BAD_REQUEST.value())
 				.comdataHora(LocalDateTime.now())
 				.buid();
