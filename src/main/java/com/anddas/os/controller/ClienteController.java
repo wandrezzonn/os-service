@@ -38,16 +38,13 @@ public class ClienteController {
 
 	@GetMapping
 	public List<ClienteRepresentation> clientes() {
-		//return clienteRepository.findAll();
 		return toCollectionRepresentation(clienteRepository.findAll());
-
 	}
 
 	@PostMapping
 
 	public Cliente salvar(@Valid @RequestBody Cliente cliente) {
 		 return cadastroCliente.salvar(cliente);
-		
 
 	}
 
